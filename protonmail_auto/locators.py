@@ -1,3 +1,5 @@
+import random
+
 from selenium.webdriver.common.by import By
 
 
@@ -17,7 +19,7 @@ class SettingsFoldersLocators:
     ADD_FOLDER_BTN = (By.XPATH, f"{_buttons_div}"
                                 "/button[@data-test-id='folders/labels:addFolder']")
     ADD_LABEL_BTN = (By.XPATH, f"{_buttons_div}"
-                                "/button[@data-test-id='folders/labels:addLabel']")
+                               "/button[@data-test-id='folders/labels:addLabel']")
 
     ITEMS_TABLE = (By.XPATH, "//*[@class='pm-simple-table orderableTable noborder border-collapse mt1']")
     ITEM_FOLDER_TYPE = (By.XPATH, "//*[@data-test-id='folders/labels:item-type:folder']")
@@ -30,15 +32,14 @@ class SettingsFoldersLocators:
     EDIT_ITEM_BTN = (By.XPATH, ".//button[@data-test-id='folders/labels:item-edit']")
     DROPDOWN_OPEN_BTN = (By.XPATH, ".//button[@data-test-id='dropdown:open']")
     DELETE_ITEM_BTN = (By.XPATH, ".//button[@data-test-id='folders/labels:item-delete']")
+    NOTIFICATION_SUCCESS = (By.XPATH, ".//div[contains(@class,'notification-success') and text()='{}']")
 
 
-class SettingsAddItemDialog:
+class SettingsModalDialogLocators:
+    HEADER = (By.XPATH, "//*[@class='pm-modalHeader']")
     ITEM_NAME = (By.XPATH, "//*[@data-test-id='label/folder-modal:name']")
     SUBMIT = (By.XPATH, "//*[@type='submit']")
-
-
-class SettingsDeleteItemDialog:
-    SUBMIT = (By.XPATH, "//*[@type='submit']")
+    CANCEL = (By.XPATH, "//*[@type='reset']")
 
 
 class ColorsLocators:
@@ -55,7 +56,7 @@ class ColorsLocators:
     RGB_151_201_193 = (By.XPATH, "//*[@data-test-id='color-selector:#97c9c1']")
     RGB_114_187_117 = (By.XPATH, "//*[@data-test-id='color-selector:#72bb75']")
     RGB_157_185_159 = (By.XPATH, "//*[@data-test-id='color-selector:#9db99f']")
-    RGB_195_210_97 = (By.XPATH, "//*[@data-test-id='color-selector:#7272a7']")
+    RGB_195_210_97 = (By.XPATH, "//*[@data-test-id='color-selector:#c3d261']")
     RGB_198_205_151 = (By.XPATH, "//*[@data-test-id='color-selector:#c6cd97']")
     RGB_230_192_76 = (By.XPATH, "//*[@data-test-id='color-selector:#e6c04c']")
     RGB_231_210_146 = (By.XPATH, "//*[@data-test-id='color-selector:#e7d292']")
@@ -64,15 +65,17 @@ class ColorsLocators:
 
     @classmethod
     def get_random(cls):
-        import random
-        all_ = [i for i in cls.__dict__ if not (i.startswith('__') and "get")]
+        """
+        get random color from all in this class
+        :return: string. To get value use getattr()
+        """
+        all_ = [i for i in cls.__dict__ if not (i.startswith('__') or i.startswith('get'))]
         res = random.choice(all_)
         # res = getattr(cls, res)
         return res
 
 
 class ColorsMap:
-    # color: rgb(157, 185, 159);
     RGB_114_114_167 = "color: rgb(114, 114, 167);"
     RGB_137_137_172 = "color: rgb(137, 137, 172);"
     RGB_207_88_88 = "color: rgb(207, 88, 88);"
@@ -85,16 +88,10 @@ class ColorsMap:
     RGB_94_199_183 = "color: rgb(94, 199, 183);"
     RGB_151_201_193 = "color: rgb(151, 201, 193);"
     RGB_114_187_117 = "color: rgb(114, 187, 117);"
-    RGB_157_185_159 = "color: rgb(175, 185, 159);"
+    RGB_157_185_159 = "color: rgb(157, 185, 159);"
     RGB_195_210_97 = "color: rgb(195, 210, 97);"
     RGB_198_205_151 = "color: rgb(198, 205, 151);"
     RGB_230_192_76 = "color: rgb(230, 192, 76);"
     RGB_231_210_146 = "color: rgb(231, 210, 146);"
     RGB_230_152_76 = "color: rgb(230, 152, 76);"
     RGB_223_178_134 = "color: rgb(223, 178, 134);"
-
-
-
-
-
-

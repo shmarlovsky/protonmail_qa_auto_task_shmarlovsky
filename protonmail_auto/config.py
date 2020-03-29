@@ -4,6 +4,10 @@ import sys
 
 
 def get_account_data():
+    """
+    Read account data from separate json file
+    :return: None
+    """
     try:
         with open(Config.ACCOUNT_DATA, 'r', encoding='utf-8') as r_file:
             data = json.load(r_file)
@@ -20,9 +24,9 @@ def get_account_data():
 class Config:
     USERNAME = ''
     PASSWORD = ''
-    CHROME_PATH = r'tools\chromedriver.exe'
+    CHROME_PATH = os.path.join(os.path.dirname(__file__), 'tools', 'chromedriver.exe')
     DATA_DIR = 'data'
-    ACCOUNT_DATA = 'account_details.json'
+    ACCOUNT_DATA = os.path.join(os.path.dirname(__file__), 'account_details.json')
 
 
 get_account_data()

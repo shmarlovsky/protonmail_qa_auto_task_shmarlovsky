@@ -128,5 +128,5 @@ dmypy.json
 .idea/
 
 # project specific
-*.log
 data/*
+*.json
